@@ -7,6 +7,8 @@ import { getFullName } from '../User/userSlice';
 import { formatCurrency } from '../../utils/helpers';
 import EmptyCart from './EmptyCart';
 
+console.log("new Folder")
+
 
 function Cart() {
   const cart = useSelector(getCart)
