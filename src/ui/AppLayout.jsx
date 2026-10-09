@@ -29,6 +29,7 @@ export default function AppLayout() {
         <div className="h-screen grid grid-rows-[auto_1fr_auto] bg-stone-100">
           <Header />
 
+
           <div className="overflow-scroll overflow-x-hidden">
             <main className="mx-auto max-w-3xl px-6 py-4">
                {isLoading ? <Loader /> : <Outlet />} 

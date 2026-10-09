@@ -8,6 +8,7 @@ import {
 import { getOrder } from '../../services/apiRestaurant';
 import { useFetcher, useLoaderData } from 'react-router-dom';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 function Order() {
   const order = useLoaderData()
@@ -64,6 +65,7 @@ function Order() {
 
 export async function orderLoader({params}) { //params from url to fetch order details
   const order = await getOrder(params.orderID)
+   toast.success("Order Placed Sucessfully")
   return order
 }
 
