@@ -7,7 +7,6 @@ import { getFullName } from '../User/userSlice';
 import { formatCurrency } from '../../utils/helpers';
 import EmptyCart from './EmptyCart';
 
-console.log("new Folder")
 
 
 function Cart() {
@@ -16,7 +15,6 @@ function Cart() {
   const fullName = useSelector(getFullName)
   const dispatch = useDispatch()
 
-  console.log(cart)
   if(!cart.length) return <EmptyCart />
   
   return (

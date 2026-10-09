@@ -7,17 +7,25 @@ import {
 } from "../../utils/helpers";
 import { getOrder } from '../../services/apiRestaurant';
 import { useFetcher, useLoaderData } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 
 function Order() {
   const order = useLoaderData()
+  const hasShownToast = useRef(false);
+
+  useEffect(() => {
+    if (order.id && !hasShownToast.current) {
+      toast.success(`Order Placed, will be delivered in ${calcMinutesLeft(order.estimatedDelivery)} Minutes`);
+      hasShownToast.current = true;
+    }
+  }, [order.id]);
 
   const fetcher = useFetcher()
 
   useEffect(function() {
     if(!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu') 
-  })
+  },[fetcher])
 
   const {
     id,
@@ -65,7 +73,6 @@ function Order() {
 
 export async function orderLoader({params}) { //params from url to fetch order details
   const order = await getOrder(params.orderID)
-   toast.success("Order Placed Sucessfully")
   return order
 }
 
